@@ -15,7 +15,9 @@ console.log("Server is running...")
 
 //Step-2
 app.use(express.json())
-app.use(cors());
+app.use(cors({
+    "https://space-iq-nfhh-odqubvo4z-404-error-found1.vercel.app"
+}));
 app.use(Routes)
 
 //Step-3
