@@ -9,7 +9,7 @@ const ContactForm = () => {
   const onFinish = (values) => {
     console.log(values)
     axios 
-    .post("http://localhost:5001/api/ContactRoute/Contact",values)
+    .post(" https://spaceiq.onrender.com/api/ContactRoute/Contact",values)
     .then((res) =>{
           console.log(res.data.message)
           setmessage(res.data.message)

@@ -17,7 +17,7 @@ const DemoForm = () => {
     }
 
     axios
-      .post("http://localhost:5001/api/DemoRoute/Demo", data)
+      .post(" https://spaceiq.onrender.com/api/DemoRoute/Demo", data)
       .then((res) => {
         console.log(res.data.message)
         setmessage(res.data.message)

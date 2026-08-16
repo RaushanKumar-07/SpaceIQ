@@ -8,7 +8,7 @@ const RegisterForm = () => {
   const onFinish = (values) => {
     console.log(values);
     axios
-      .post("http://localhost:5001/api/LoginRoute/Register", values)
+      .post(" https://spaceiq.onrender.com/api/LoginRoute/Register", values)
       .then((res) => {
         console.log(res.data.message);
         setMessage(res.data.message)
