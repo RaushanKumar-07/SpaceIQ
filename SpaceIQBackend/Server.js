@@ -15,14 +15,12 @@ console.log("Server is running...")
 
 //Step-2
 app.use(express.json())
-app.use(cors({
-    origin: "http://localhost:5173"
-}))
+app.use(cors());
 app.use(Routes)
 
 //Step-3
 const PORT = config.PORT;
-app.listen(PORT, () => {
+app.listen(PORT,  "0.0.0.0", () => {
     console.log(`Server running on port ${PORT}`);
 })
 

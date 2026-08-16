@@ -1,7 +1,7 @@
 const MongoDB = require("mongoose");
 const dns = require("dns");
 
-const config = require("./Config");
+const config = require("./config");
 
 dns.setDefaultResultOrder("ipv4first");
 
