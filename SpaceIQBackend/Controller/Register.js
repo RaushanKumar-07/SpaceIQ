@@ -16,16 +16,18 @@ const Register = async(req,res) =>{
             })
         }
 
-        const checkUser = await RegisterModel.findOne({
-            email
-        })
 
-        if(checkUser){
-            return res.status(400).json({
-                success: false,
-                message: "User already registered.."
-            })
-        }
+        // const checkUser = await RegisterModel.findOne({
+        //     email
+        // })
+
+
+        // if(checkUser){
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: "User already registered.."
+        //     })
+        // }
 
         const user = new RegisterModel({
             name,
