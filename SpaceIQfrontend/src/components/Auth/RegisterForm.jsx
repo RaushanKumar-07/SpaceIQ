@@ -2,21 +2,22 @@ import React, { useState } from "react";
 import { Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../../config/api";
 
 const RegisterForm = () => {
   const [message,setMessage] = useState()
   const onFinish = (values) => {
     console.log(values);
     axios
-      .post(" https://spaceiq.onrender.com/api/LoginRoute/Register", values)
-      .then((res) => {
-        console.log(res.data.message);
-        setMessage(res.data.message)
-      })
-      .catch((err) => {
-        console.log(err.response.data.message);
-        setMessage(err.response.data.message)
-      });
+  .post(`${API_URL}/api/LoginRoute/Register`, values)
+  .then((res) => {
+    console.log(res.data.message);
+    setMessage(res.data.message);
+  })
+  .catch((error) => {
+    console.error("Registration Error:", error.response?.data || error.message);
+    setMessage(error.response?.data?.message || "Registration failed");
+  });
   };
 
   return (

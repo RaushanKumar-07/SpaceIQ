@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Form, Input, Select, DatePicker, TimePicker, Button } from "antd"
 import axios from "axios"
+import API_URL from "../../config/api";
 
 const { TextArea } = Input
 
@@ -16,16 +17,18 @@ const DemoForm = () => {
       time: values.time ? values.time.format("HH:mm") : null,
     }
 
-    axios
-      .post(" https://spaceiq.onrender.com/api/DemoRoute/Demo", data)
-      .then((res) => {
-        console.log(res.data.message)
-        setmessage(res.data.message)
-      })
-      .catch((err) => {
-        console.log(err.response?.data?.message || err.message)
-        setmessage(err.response?.data?.message || "Something went wrong")
-      })
+    
+axios
+  .post(`${API_URL}/api/DemoRoute/Demo`, data)
+  .then((res) => {
+    console.log(res.data.message);
+    setmessage(res.data.message);
+  })
+  .catch((err) => {
+    console.log(err.response?.data?.message || err.message);
+    setmessage(err.response?.data?.message || "Something went wrong");
+  });
+
   }
 
   return (

@@ -3,6 +3,7 @@ const {RegisterValidation} = require("../Services/ValidationSchema")
 
 
 
+
 const Register = async(req,res) =>{
     try{
         const details = await RegisterValidation.validateAsync(req.body)
@@ -17,17 +18,17 @@ const Register = async(req,res) =>{
         }
 
 
-        // const checkUser = await RegisterModel.findOne({
-        //     email
-        // })
+        const checkUser = await RegisterModel.findOne({
+            email
+        })
 
 
-        // if(checkUser){
-        //     return res.status(400).json({
-        //         success: false,
-        //         message: "User already registered.."
-        //     })
-        // }
+        if(checkUser){
+            return res.status(400).json({
+                success: false,
+                message: "User already registered.."
+            })
+        }
 
         const user = new RegisterModel({
             name,
@@ -42,12 +43,15 @@ const Register = async(req,res) =>{
             message: "User created successfully.."
         })
 
-    }catch(error) {
-        res.status(500).json({
-            success: false,
-            message: error.message
-        })
-    }
+    }catch (error) {
+    console.error("REGISTRATION ERROR:", error);
+    console.error("ERROR STACK:", error.stack);
+
+    res.status(500).json({
+        success: false,
+        message: error.message
+    });
+}
 
 }
 

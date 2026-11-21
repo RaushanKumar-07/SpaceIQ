@@ -2,22 +2,24 @@ import React, { useState } from 'react'
 import { Form, Input, Button, Checkbox } from "antd"
 import { Link } from "react-router-dom"
 import axios from 'axios'
+import API_URL from "../../config/api";
 
 const LoginForm = () => {
   const [message,setMessage] = useState()
   const onFinish = (values) => {
     console.log(values)
-    axios
-    .post(" https://spaceiq.onrender.com/api/LoginRoute/Login",values)
-    .then((res) =>{
-      console.log(res.data.message),
-      console.log(res.data.data),
-      setMessage(res.data.message)
-    })
-    .catch((err) => {
-      console.log(err.response.data.message),
-      setMessage(res.response.data.message)
-    })
+   
+axios
+  .post(`${API_URL}/api/LoginRoute/Login`, values)
+  .then((res) => {
+    console.log(res.data.message);
+    console.log(res.data.data);
+    setMessage(res.data.message);
+  })
+  .catch((err) => {
+    console.log(err.response?.data?.message || err.message);
+    setMessage(err.response?.data?.message || "Login failed");
+  });
 
   }
 
@@ -30,7 +32,11 @@ const LoginForm = () => {
         <p className="mt-3 text-gray-500">
           Sign in to your SpaceIQ account
         </p>
+       
       </div>
+
+       <h1 className="text-2xl text-green-500">{message}</h1>
+       
       <Form layout="vertical" size="large" requiredMark={false} onFinish={onFinish}>
         <Form.Item label="Email" name="email"
           rules={[
